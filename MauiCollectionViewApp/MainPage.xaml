@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiCollectionViewApp.MainPage">
+
+    <StackLayout>
+        <Label FontSize="30" Text="{Binding Source={x:Reference colView}, Path=SelectedItem.Name}"/>
+        <Label x:Name="listLabel" FontSize="20"/>
+        <CollectionView x:Name="colView"
+                        SelectionMode="Multiple"
+                        SelectionChanged="colView_SelectionChanged"
+                        SelectionChangedCommand="{Binding SelectCommand}"
+                        SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItems}">
+            <CollectionView.ItemsLayout>
+                <!--<LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>-->
+                <GridItemsLayout Orientation="Horizontal" Span="2" HorizontalItemSpacing="20" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.Header>
+                <Label TextColor="Red" FontSize="30" Text="Flights shedule"/>
+            </CollectionView.Header>
+            <CollectionView.Footer>
+                <Label TextColor="Blue" FontSize="20" Text="Footer for collection view"/>
+            </CollectionView.Footer>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout>
+                        <Label Text="{Binding Name}" FontSize="36"/>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding ToCity}" FontSize="26"/>
+                            <Label Text="{Binding Date}" FontSize="20"/>
+                            <Label Text="{Binding Time}" FontSize="20"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>>
+        </CollectionView>
+    </StackLayout>
+
+</ContentPage>
